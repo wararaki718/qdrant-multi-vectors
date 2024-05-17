@@ -6,8 +6,6 @@ from qdrant_client.models import (
     Filter,
     NamedVector,
     PointStruct,
-    ScalarQuantization,
-    ScalarQuantizationConfig,
     ScoredPoint,
     SearchParams,
     UpdateResult,
@@ -23,12 +21,10 @@ class SearchClient:
             self,
             collection_name: str,
             vectors_config: Dict[str, VectorParams],
-            quantization_config: ScalarQuantizationConfig,
         ) -> bool:
         self._client.recreate_collection(
             collection_name=collection_name,
             vectors_config=vectors_config,
-            # quantization_config=ScalarQuantization(scalar=quantization_config),
             on_disk_payload=False,
         )
     

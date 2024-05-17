@@ -5,8 +5,6 @@ from qdrant_client.models import (
     Distance,
     NamedVector,
     PointStruct,
-    ScalarQuantizationConfig,
-    ScalarType,
     SearchParams,
     VectorParams,
 )
@@ -44,15 +42,10 @@ def main():
             on_disk=False,
         )
     }
-    quantization_config = ScalarQuantizationConfig(
-        type=ScalarType.INT8,
-        quantile=0.99,
-        always_ram=True,
-    )
+
     _ = client.create_index(
         collection_name,
         vectors_config=dense_vectors_config,
-        quantization_config=quantization_config
     )
     print(f"index created: {collection_name}")
 
